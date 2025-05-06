@@ -1,0 +1,16 @@
+# Grid search configuration
+# Format: parameter_path: [value1, value2, ...]
+
+# Model hyperparameters
+model.time_embedding_dim: [128, 256, 512]
+model.base_channels: [64, 128, 256]
+model.dropout: [0.0, 0.1, 0.2]
+
+# Training hyperparameters
+training.batch_size: [64, 128, 256]
+training.learning_rate: [1e-4, 2e-4, 5e-4]
+training.weight_decay: [0.0, 1e-4, 1e-3]
+
+# Diffusion process parameters
+diffusion.timesteps: [500, 1000, 2000]
+diffusion.beta_schedule: ["linear", "cosine"] 

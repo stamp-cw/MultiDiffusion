@@ -1,0 +1,57 @@
+# 模型配置
+model:
+  name: "ddpm"
+  backbone: "unet"
+  image_size: 32
+  channels: 3
+  time_embedding_dim: 256
+  base_channels: 128
+  channel_multipliers: [1, 2, 2, 2]
+  attention_resolutions: [16]
+  num_res_blocks: 2
+  dropout: 0.1
+  
+# 扩散过程配置
+diffusion:
+  timesteps: 1000
+  beta_schedule: "linear"  # linear, cosine, or custom
+  beta_start: 0.0001
+  beta_end: 0.02
+  
+# 训练配置
+training:
+  framework: "pytorch"  # pytorch or paddle
+  batch_size: 128
+  num_epochs: 500
+  learning_rate: 1e-4
+  weight_decay: 0.0
+  ema_decay: 0.9999
+  gradient_clip: 1.0
+  warmup_steps: 5000
+  
+# 数据集配置
+data:
+  name: "cifar10"  # mnist, cifar10, cifar100, celeba, lsun
+  num_workers: 4
+  pin_memory: true
+  
+# 评估配置
+evaluation:
+  eval_every: 5000  # 每多少步评估一次
+  save_every: 10000  # 每多少步保存一次checkpoint
+  sample_size: 64  # 生成样本数量
+  fid_samples: 50000  # 计算FID时的样本数
+  lpips_samples: 1000  # 计算LPIPS时的样本数
+  
+# 日志配置
+logging:
+  project: "multidiffusion"
+  log_dir: "runs"
+  log_every: 100  # 每多少步记录一次日志
+  
+# 分布式训练配置
+distributed:
+  enabled: false
+  backend: "nccl"
+  world_size: 1
+  rank: 0 

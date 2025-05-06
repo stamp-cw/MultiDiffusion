@@ -1,0 +1,21 @@
+# Learning rate grid search configuration
+# Focused on optimizing FID score
+
+# Learning rate and related parameters
+training.learning_rate: [1e-5, 2e-5, 5e-5, 1e-4, 2e-4, 5e-4]
+training.warmup_steps: [1000, 2000, 5000]
+training.weight_decay: [0.0, 1e-5, 1e-4]
+
+# Learning rate schedule parameters
+training.lr_schedule: ["constant", "cosine", "linear"]
+training.lr_gamma: [0.1, 0.5, 0.8]  # Learning rate decay factor
+training.lr_decay_steps: [10000, 20000, 50000]  # Steps between learning rate decays
+
+# Optimizer parameters
+training.optimizer: ["adam", "adamw", "radam"]
+training.beta1: [0.9, 0.95, 0.99]
+training.beta2: [0.999, 0.9995, 0.9999]
+training.eps: [1e-8, 1e-7, 1e-6]
+
+# Gradient clipping
+training.gradient_clip: [0.5, 1.0, 2.0] 
